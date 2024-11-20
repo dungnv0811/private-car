@@ -1,10 +1,8 @@
 "use client";
 import { FC } from "react";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
-
 import { Pagination, PaginationContent, PaginationItem } from "@/components/ui/pagination";
-
 import { Button } from "@/components/ui/button";
 
 interface PaginationProps {
@@ -19,20 +17,24 @@ interface PaginationArrowProps {
 }
 
 const PaginationArrow: FC<PaginationArrowProps> = ({ direction, href, isDisabled }) => {
-  const router = useRouter();
   const isLeft = direction === "left";
   const disabledClassName = isDisabled ? "opacity-50 cursor-not-allowed" : "";
 
   return (
-    <Button
-      onClick={() => router.push(href)}
-      className={`hover:bg-primary ${disabledClassName}`}
-      aria-disabled={isDisabled}
-      disabled={isDisabled}
-      variant={"outline"}
-    >
-      {isLeft ? "«" : "»"}
-    </Button>
+      <a
+          href={href}
+          className={`hover:bg-primary ${disabledClassName}`}
+          aria-disabled={isDisabled}
+          tabIndex={isDisabled ? -1 : 0}
+      >
+        <Button
+            className="hover:bg-primary"
+            disabled={isDisabled}
+            variant="outline"
+        >
+          {isLeft ? "«" : "»"}
+        </Button>
+      </a>
   );
 };
 
@@ -47,27 +49,34 @@ export function PaginationComponent({ pageCount, className }: Readonly<Paginatio
     return `${pathname}?${params.toString()}`;
   };
 
+  // Function to generate page numbers
+  const pageNumbers = Array.from({length: pageCount}, (_, i) => i + 1);
+
   return (
-    <Pagination className={cn(className)}>
-      <PaginationContent>
-        <PaginationItem>
-          <PaginationArrow
-            direction="left"
-            href={createPageURL(currentPage - 1)}
-            isDisabled={currentPage <= 1}
-          />
-        </PaginationItem>
-        <PaginationItem>
-          <span className="p-2 font-semibold text-primary">Page {currentPage}</span>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationArrow
-            direction="right"
-            href={createPageURL(currentPage + 1)}
-            isDisabled={currentPage >= pageCount}
-          />
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
+      <Pagination className={cn(className)}>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationArrow
+                direction="left"
+                href={createPageURL(currentPage - 1)}
+                isDisabled={currentPage <= 1}
+            />
+          </PaginationItem>
+          {pageNumbers.map(number => (
+              <PaginationItem key={number}>
+                <a href={createPageURL(number)} className="p-2 hover:bg-light font-semibold text-primary">
+                  {number}
+                </a>
+              </PaginationItem>
+          ))}
+          <PaginationItem>
+            <PaginationArrow
+                direction="right"
+                href={createPageURL(currentPage + 1)}
+                isDisabled={currentPage >= pageCount}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
   );
 }
