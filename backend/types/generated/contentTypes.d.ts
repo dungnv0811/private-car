@@ -485,6 +485,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     description: Schema.Attribute.Text;
     topNav: Schema.Attribute.Component<'layout.top-nav', false>;
     footer: Schema.Attribute.Component<'layout.footer', false>;
+    googleMap: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

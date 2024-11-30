@@ -27,6 +27,9 @@
       "type": "component",
       "repeatable": false,
       "component": "layout.footer"
+    },
+    "googleMap": {
+      "type": "json"
     }
   }
 }

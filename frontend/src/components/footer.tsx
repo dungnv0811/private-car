@@ -1,4 +1,6 @@
 import Link from "next/link";
+import './styles/footer.css';
+
 interface Link {
   href: string;
   text: string;
@@ -60,25 +62,40 @@ function renderIcon(text: string) {
   }
 }
 
-export function Footer({ data }: Readonly<FooterProps>) {
-  if (!data) return null;
-  const { text, socialLinks } = data;
-  return (
-    <footer className="container flex flex-col items-center justify-between gap-6 py-10 sm:flex-row">
-      <p className="text-center text-sm">{text}</p>
-      <div className="flex items-center gap-5">
-        {socialLinks &&
-          socialLinks.map((link) => (
-            <Link
-              href={link.href}
-              className="text-muted-foreground hover:text-foreground"
-              key={link.text}
-              target="_blank"
-            >
-              {renderIcon(link.text.toLowerCase())}
-            </Link>
-          ))}
-      </div>
-    </footer>
-  );
+export function Footer({ data }) {
+    if (!data) return null;
+    const { text, socialLinks, contactLinks } = data;
+    return (
+        <footer className="container flex flex-col items-center justify-between gap-6 py-10 sm:flex-row border-t border-gray-300">
+            <p className="text-center text-sm">{text}</p>
+            <div className="flex items-center gap-5">
+                {socialLinks &&
+                    socialLinks.map((link) => (
+                        <Link
+                            href={link.href}
+                            className="text-muted-foreground hover:text-foreground"
+                            key={link.text}
+                            target="_blank"
+                        >
+                            {renderIcon(link.text.toLowerCase())}
+                        </Link>
+                    ))}
+            </div>
+
+            <div className="floating-contact-icons">
+                {contactLinks.map((link, index) => (
+                    <Link
+                        key={index}
+                        href={link.href}
+                        aria-label={link.ariaLabel}
+                        target="_blank" // Assuming all external links
+                        rel="noopener noreferrer" // Good practice for external links
+                    >
+                        <img src={link.iconLink} alt={link.text} />
+                    </Link>
+                ))}
+            </div>
+
+        </footer>
+    );
 }

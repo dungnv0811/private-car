@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { GoogleMap } from "@/components/GoogleMap";
 
 const fontSans = Inter({
   variable: "--font-sans",
@@ -53,7 +54,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const data = await loader();
-  const { topNav, footer } = data?.data;
+  const { topNav, googleMap, footer } = data?.data;
 
   return (
     <html lang="en">
@@ -66,6 +67,7 @@ export default async function RootLayout({
       >
         <Header data={topNav}/>
         {children}
+        <GoogleMap data={googleMap}/>
         <Footer data={footer}/>
       </body>
     </html>

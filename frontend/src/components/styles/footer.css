@@ -1,0 +1,24 @@
+.floating-contact-icons {
+    position: fixed;
+    right: 20px; /* Distance from the right edge of the viewport */
+    bottom: 20px; /* Distance from the bottom edge of the viewport */
+    z-index: 1000; /* Ensures it stays above other content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.floating-contact-icons a {
+    display: block;
+    margin: 10px 0;
+}
+
+.floating-contact-icons img {
+    width: 40px; /* Adjust based on your icon size preferences */
+    height: auto;
+    transition: transform 0.3s ease; /* Smooth scale transformation for hover effect */
+}
+
+.floating-contact-icons a:hover img {
+    transform: scale(1.2); /* Slight increase in size on hover */
+}
