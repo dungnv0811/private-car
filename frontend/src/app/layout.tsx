@@ -1,12 +1,9 @@
 import "./globals.css";
 import qs from "qs";
 import { getStrapiURL } from "@/lib/utils";
-
 import type { Metadata } from "next";
 import { Inter, Nunito } from "next/font/google";
-
 import { cn } from "@/lib/utils";
-
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { GoogleMap } from "@/components/GoogleMap";
