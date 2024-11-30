@@ -2,12 +2,12 @@ import type { Block } from "@/types";
 
 import qs from "qs";
 import { getStrapiURL } from "@/lib/utils";
-
 import { Hero } from "@/components/hero";
 import { SectionHeading } from "@/components/section-heading";
 import ContentWithImage from "@/components/content-with-image";
 import { Pricing } from "@/components/pricing";
 import { CardCarousel } from "@/components/card-carousel";
+import GoogleMap from "@/components/GoogleMap";
 
 async function loader() {
   const { fetchData } = await import("@/lib/fetch");
@@ -63,6 +63,28 @@ async function loader() {
   return data;
 }
 
+async function globalLoader() {
+  const { fetchData } = await import("@/lib/fetch");
+  const path = "/api/global";
+  const baseUrl = getStrapiURL();
+
+  const query = qs.stringify({
+    populate: {
+      topNav: {
+        populate: "*",
+      },
+      footer: {
+        populate: "*",
+      }
+    },
+  });
+
+  const url = new URL(path, baseUrl);
+  url.search = query;
+  const data = await fetchData(url.href);
+  return data;
+}
+
 function BlockRenderer(block: Block) {
   console.dir(block.__component, { depth: null });
   switch (block.__component) {
@@ -85,7 +107,12 @@ export default async function Home() {
   const data = await loader();
   const blocks = data?.data?.blocks;
   if (!blocks) return null;
-  return <div>
-    {blocks ? blocks.map((block: any) => BlockRenderer(block)) : null}
-  </div>;
+  const globalData = await globalLoader();
+  const { googleMap } = globalData?.data;
+  return (
+    <div>
+      {blocks ? blocks.map((block: any) => BlockRenderer(block)) : null}
+      <GoogleMap data={googleMap}/>
+    </div>
+  );
 }
