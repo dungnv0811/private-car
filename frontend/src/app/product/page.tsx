@@ -106,7 +106,7 @@ export default async function BlogRoute({ searchParams }: SearchParamsProps) {
                     {item.price && (
                       <div className="flex items-center gap-3">
                         <span className="rounded-full outline outline-1 outline-primary text-primary px-3 py-0.5 text-sm">
-                          {item.price}
+                          Price: {item.price}
                         </span>
                       </div>
                     )}

@@ -32,7 +32,13 @@ async function loader() {
             },
           },
           "layout.card-grid": {
-            populate: "*",
+            populate: {
+              cardItems: {
+                populate: {
+                  image: '*'
+                }
+              }
+            },
           },
           "layout.section-heading": {
             populate: "*",
@@ -112,7 +118,7 @@ export default async function Home() {
   return (
     <div>
       {blocks ? blocks.map((block: any) => BlockRenderer(block)) : null}
-      <GoogleMap data={googleMap}/>
+      {/*<GoogleMap data={googleMap}/>*/}
     </div>
   );
 }

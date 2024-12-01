@@ -14,13 +14,14 @@ interface HeaderProps {
 
 export function Header({ data }: Readonly<HeaderProps>) {
     if (!data) return null;
-    const { logoText, navItems, cta } = data;
+    const { logoText, navItems, cta, logo } = data;
     return (
         <header className="container flex items-center justify-between gap-10 py-6 border-b border-gray-300 bg-white shadow-sm">
             <Link href="/" className="flex items-center gap-3">
                 <svg viewBox="0 0 238 238" fill="none" className="size-6 text-primary" aria-hidden="true">
                     {/* SVG path data omitted for brevity */}
                 </svg>
+                <img src={logo} alt="Logo" className="h-8 w-auto" />
                 <span className="font-heading text-xl font-bold">{logoText}</span>
             </Link>
             <div className="flex items-center gap-10">

@@ -18,6 +18,9 @@
       "type": "component",
       "repeatable": false,
       "component": "elements.link"
+    },
+    "logo": {
+      "type": "string"
     }
   }
 }

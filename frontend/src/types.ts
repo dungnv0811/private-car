@@ -40,6 +40,10 @@ export interface CardGridProps extends Base<"layout.card-grid"> {
     heading: string;
     text: string;
     icon: string;
+    image: {
+      url: string;
+      alternativeText: string;
+    };
   }[];
 }
 
