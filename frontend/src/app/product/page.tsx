@@ -20,6 +20,7 @@ interface PostProps {
   id: string;
   documentId: string;
   title: string;
+  price: string;
   slug: string;
   description: string;
   publishedAt: string;
@@ -75,20 +76,20 @@ export default async function BlogRoute({ searchParams }: SearchParamsProps) {
   const total = data?.meta.pagination.pageCount;
   const posts = data?.data;
   return (
-    <section className="container flex flex-col items-center gap-6 py-24 sm:gap-7">
+    <section className="container flex flex-col items-center gap-6 py-10 sm:gap-7">
       <div className="flex flex-col gap-3">
-        <span className="font-bold uppercase text-primary text-center">Articles</span>
-        <h2 className="font-heading text-3xl font-semibold sm:text-4xl text-center">Our Blog</h2>
+        <span className="font-bold uppercase text-primary text-center">Transportation and Travel Services</span>
+        <h2 className="font-heading text-3xl font-semibold sm:text-4xl text-center">Our Services</h2>
       </div>
       <p className="text-lg text-muted-foreground max-w-2xl text-center">
-        Checkout some of our cool articles. We write about the latest trends in tech, design and much more.
+        Explore insightful articles in our blog where we discuss the latest trends in travel and transportation. From innovative travel technology to practical transportation solutions, we cover a range of topics designed to enhance your travel experiences. Dive into our content to stay updated and informed!
       </p>
       <CategorySelect />
       <Search />
       <div className="mt-6 grid auto-rows-fr grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
         {posts &&
           posts.map((item: PostProps) => (
-            <Link href={"/blog/" + item.slug} key={item.documentId}>
+            <Link href={"/product/" + item.slug} key={item.documentId}>
               <Card className="h-full shadow-lg border-none">
                 <CardContent className="flex h-full flex-col items-start gap-5 px-0">
                   <div className="relative h-52 w-full">
@@ -102,6 +103,13 @@ export default async function BlogRoute({ searchParams }: SearchParamsProps) {
                   <div className="flex flex-1 flex-col gap-4 px-5">
                     <h4 className="text-lg font-semibold">{item.title}</h4>
                     <p className="mb-auto text-muted-foreground">{item.description}</p>
+                    {item.price && (
+                      <div className="flex items-center gap-3">
+                        <span className="rounded-full outline outline-1 outline-primary text-primary px-3 py-0.5 text-sm">
+                          {item.price}
+                        </span>
+                      </div>
+                    )}
                     <div className="flex items-center gap-3">
                       <span className="rounded-full outline outline-1 outline-primary text-primary px-3 py-0.5 text-sm">
                         {item.category.text}

@@ -1,7 +1,8 @@
 import type { CardGridProps } from "@/types";
-import { Frame, Download, Globe, Sparkles, LayoutPanelLeft, Palette } from "lucide-react";
-
+import {Frame, Download, Globe, Sparkles, LayoutPanelLeft, Palette, Phone, Mail} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import {FaWhatsapp} from "react-icons/fa";
+import {SiKakaotalk} from "react-icons/si";
 
 function selectIcon(icon: string) {
   switch (icon) {
@@ -13,6 +14,14 @@ function selectIcon(icon: string) {
       return <Globe size={28} className="text-primary" />;
     case "Sparkles":
       return <Sparkles size={28} className="text-primary" />;
+    case "Phone":
+      return <Phone size={28} className="text-primary" />;
+    case "Mail":
+      return <Mail size={28} className="text-primary" />;
+    case "WhatsApp":
+      return <FaWhatsapp size={28} className="text-primary" />;
+    case "Kakaotalk":
+      return <SiKakaotalk size={28} className="text-primary" />;
     case "LayoutPanelLeft":
       return <LayoutPanelLeft size={28} className="text-primary" />;
     case "Palette":

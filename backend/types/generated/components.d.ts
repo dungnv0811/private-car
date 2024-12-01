@@ -133,10 +133,22 @@ export interface ElementsCard extends Struct.ComponentSchema {
   collectionName: 'components_elements_cards';
   info: {
     displayName: 'Card';
+    description: '';
   };
   attributes: {
     icon: Schema.Attribute.Enumeration<
-      ['Frame', 'Download', 'Globe', 'Sparkles', 'LayoutPanelLeft', 'Palette']
+      [
+        'Frame',
+        'Download',
+        'Globe',
+        'Sparkles',
+        'LayoutPanelLeft',
+        'Palette',
+        'Phone',
+        'Mail',
+        'WhatsApp',
+        'Kakaotalk',
+      ]
     >;
     heading: Schema.Attribute.String;
     text: Schema.Attribute.Text;
