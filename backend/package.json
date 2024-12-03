@@ -2,7 +2,7 @@
   "name": "backend",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "A CMS application",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -27,7 +27,7 @@
     "better-sqlite3": "9.4.3"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Dung Nguyen"
   },
   "strapi": {
     "uuid": "0ed328b8-5ec8-4297-a829-addd80414c09"

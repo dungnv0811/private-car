@@ -118,7 +118,7 @@ export default async function Home() {
   return (
     <div>
       {blocks ? blocks.map((block: any) => BlockRenderer(block)) : null}
-      {/*<GoogleMap data={googleMap}/>*/}
+      <GoogleMap data={googleMap}/>
     </div>
   );
 }
