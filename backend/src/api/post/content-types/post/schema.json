@@ -40,6 +40,16 @@
     },
     "price": {
       "type": "string"
+    },
+    "additionalImages": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

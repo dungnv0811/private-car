@@ -585,6 +585,10 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     content: Schema.Attribute.RichText;
     category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
     price: Schema.Attribute.String;
+    additionalImages: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

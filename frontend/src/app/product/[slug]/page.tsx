@@ -11,8 +11,6 @@ interface Props {
   };
 }
 
-
-
 async function loader(slug: string) {
   const { fetchData } = await import("@/lib/fetch");
   const path = "/api/posts";
@@ -22,6 +20,9 @@ async function loader(slug: string) {
   url.search = qs.stringify({
     populate: {
       image: {
+        fields: ["url", "alternativeText", "name"],
+      },
+      additionalImages: {
         fields: ["url", "alternativeText", "name"],
       },
       category: {
@@ -67,6 +68,19 @@ export default async function SinglePost({ params }: Props) {
             className="w-full rounded-lg mt-8"
           />
         </header>
+      </div>
+
+      <div className="container mx-auto my-10">
+        {post.additionalImages && post.additionalImages.map((image, index) => (
+            <StrapiImage
+                key={index}
+                src={image.url}
+                width={800}
+                height={600}
+                alt={image.alternativeText}
+                className="w-24 h-24 rounded-md cursor-pointer"
+            />
+        ))}
       </div>
 
       <div className="container mx-auto max-w-4xl text-base leading-7">
