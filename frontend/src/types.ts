@@ -52,6 +52,10 @@ export interface SectionHeadingProps extends Base<"layout.section-heading"> {
   subHeading: string;
   text: string;
   centered?: boolean;
+  image: {
+    url: string;
+    alternativeText: string;
+  };
 }
 
 export interface ContentWithImageProps extends Base<"layout.content-with-image"> {

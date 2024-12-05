@@ -1,10 +1,11 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import type { SectionHeadingProps } from "@/types";
+import {StrapiImage} from "@/components/strapi-image";
 
 export function SectionHeading(data: Readonly<SectionHeadingProps>) {
   if (!data) return null;
-  const { heading, subHeading, text, centered = true } = data;
+  const { heading, subHeading, text, centered = true, image } = data;
 
   const headingStyle = centered ? "flex flex-col text-center" : "";
 
@@ -15,6 +16,16 @@ export function SectionHeading(data: Readonly<SectionHeadingProps>) {
         <h2 className="font-heading text-3xl font-semibold sm:text-4xl mb-2">{heading}</h2>
       </div>
       <p className="text-lg text-muted-foreground max-w-2xl">{text}</p>
+        {image && image.url && (
+            <StrapiImage
+                src={image.url}
+                alt={image.alternativeText || 'Default alt text'}
+                width={800}
+                height={600}
+                priority
+                className="w-full rounded-lg mt-2"
+            />
+        )}
     </div>
   );
 }

@@ -1,7 +1,8 @@
 {
   "collectionName": "components_layout_section_headings",
   "info": {
-    "displayName": "Section Heading"
+    "displayName": "Section Heading",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,6 +14,16 @@
     },
     "text": {
       "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
